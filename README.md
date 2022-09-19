@@ -7,7 +7,7 @@
 [w3schools sql tutorial](https://www.w3schools.com/sql/default.asp)을 완료해보자.
 
 ### 제출
-SQL Home ~ SQL Data Types 까지 진행하고 인증 스크린샷을 problem1에 업로드해주세요.
+SQL Home ~ SQL Data Types 까지 진행하고 인증 스크린샷을 problem-1에 업로드해주세요.
 
 
 ## problem 2
@@ -32,17 +32,18 @@ DELETE /v1/posts/:id delete a post
 
 ### 제약사항
 
+- DB는 로컬에 postgresql 환경을 설정하여 사용한다.
 - 모델링하고, 이를 viewset에 적용하는 일 외 다른 수정사항은 최소화하여 진행한다.
   - authentication, pagination 등은 하지 않는다.
 - 하나의 모델 내에서만 모델링을 진행한다. 
-  - Foreign Key는 사용하지 마세요.
-- 다음 필드들은 꼭 한 번씩 사용해야한다.
+  - Foreign Key는 사용하지 않는다.
+- 다음 필드들은 꼭 한 번씩 사용한다.
   - `CharField, DateTimeField, EmailField, TextField`
   - 힌트: [Django model fields](https://docs.djangoproject.com/en/4.1/ref/models/fields/) 문서를 참고하면서 모델링해보세요.
 
 ### 제출
 
-problem2 폴더에 장고 프로젝트를 업로드해주세요.
+problem-2 폴더에 장고 프로젝트를 업로드해주세요.
 
 
 ## problem 3
@@ -63,4 +64,4 @@ DELETE /v2/posts/:id delete a post
 
 ### 제출
 
-problem2에 업로드된 장고 프로젝트에 해당 뷰를 추가해주세요.
+problem-2에 업로드된 장고 프로젝트에 해당 뷰를 추가해주세요.
