@@ -18,6 +18,26 @@ WHERE condition;
 사용할 예시 데이터베이스는 위와 같다.
 
 
-## SQL TOP, LIMIT, FETCH FIRST
+## SQL TOP, LIMIT, FETCH FIRST Example
+``` sql
+SELECT TOP 3 * FROM Customers;
+```
+이 구문이랑
+
+```sql
+SELECT * FROM Customers
+LIMIT 3;
+```
+이 구문은 같은 동작을 한다. 
+
 ## SQL TOP PERCENT Example
+TOP을 row 개수 말고 퍼센트로 반환한다. 
+```sql
+SELECT TOP 50 PERCENT * FROM Customers;
+```
+
 ## ADD a WHERE CLAUSE
+```sql
+SELECT TOP 3 * FROM Customers
+WHERE Country='Germany';
+```
