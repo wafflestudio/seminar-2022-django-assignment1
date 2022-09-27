@@ -10,7 +10,7 @@ class Post(models.Model):
     owner = models.CharField('OWNER', max_length=50)
     email = models.EmailField('EMAIL')
     time_to_read = models.IntegerField('TIME', default=0)
-    image = models.ImageField('IMAGE', upload_to='photos/%Y/%m/%d',)
+    image = models.ImageField('IMAGE', upload_to='photos/%Y/%m/%d', null=True)
 
     class Meta:
         db_table = 'blog_posts'
@@ -21,4 +21,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-
+    def save(self, *args, **kwargs):
+        self.time_to_read = len(self.content) // 500 + 2
+        super().save(*args, **kwargs)
