@@ -36,3 +36,9 @@ DELETE /v1/posts/:id delete a post
 problem-2 폴더에 장고 프로젝트를 업로드해주세요.
 
 [medium-post-api-example](https://github.com/david-fernando/medium-posts-api)
+
+궁금한 것
+rest_framework.generic
+rest_framework.serializer
+rest_framework.queryset
+rest_framework.serializer_class
