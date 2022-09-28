@@ -393,6 +393,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # MySettings
-./medianproject/my_settings.py
+/medianproject/my_settings.py
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,pycharm,django,python
