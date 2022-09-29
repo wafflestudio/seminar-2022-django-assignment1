@@ -69,6 +69,7 @@ DELETE /v1/posts/:id delete a post
 ``` Bash
 GET /v1/posts/
 ```
+![GET REQUEST](https://user-images.githubusercontent.com/81140673/193062764-2da3aa32-3fff-4cf4-8bb8-eca441e66229.PNG)
 현재 존재하는 모든 posts를 리턴합니다. 
 
 <br></br>
@@ -77,6 +78,8 @@ GET /v1/posts/
 ``` Bash
 POST /v1/posts/
 ```
+![POST REQUEST](https://user-images.githubusercontent.com/81140673/193062887-5cb587ae-463c-4525-98bb-0cac3903a2d3.PNG)
+
 새로운 Post 객체를 생성합니다. 
 
 <br></br>
@@ -85,6 +88,8 @@ POST /v1/posts/
 ``` Bash
 GET /v1/posts/:id/
 ```
+![gET REQUEST](https://user-images.githubusercontent.com/81140673/193062960-8aab6f44-0089-4aea-bf8a-ff577bc6e58b.PNG)
+
 하나의 Post를 id로 불러옵니다. 
 <br></br>
 
@@ -92,6 +97,8 @@ GET /v1/posts/:id/
 ``` Bash
 PUT /v1/posts/:id/
 ```
+![PUT REQUEST](https://user-images.githubusercontent.com/81140673/193063047-dd1df304-c47c-4082-943e-28e6a363f413.PNG)
+
 id번째 POST를 완전히 새롭게 바꿉니다. 
 <br></br>
 
@@ -99,6 +106,8 @@ id번째 POST를 완전히 새롭게 바꿉니다.
 ``` Bash
 PATCH /v1/posts/:id/
 ```
+![PATCH REQUEST](https://user-images.githubusercontent.com/81140673/193063158-738628dc-7fd8-49e0-b900-0ede75a42f17.PNG)
+
 POST를 부분적으로 수정합니다. 
 <br></br>
 
@@ -106,6 +115,8 @@ POST를 부분적으로 수정합니다.
 ``` Bash
 DELETE /v1/posts/:id/
 ```
+![DELETE REQUEST](https://user-images.githubusercontent.com/81140673/193063236-31860918-d16a-41cc-8406-da385a5da9fe.PNG)
+
 Post 객체를 삭제합니다. 
 <br></br>
 
