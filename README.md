@@ -24,7 +24,7 @@ GET /v1/posts/ list posts
 POST /v1/posts/ create a post
 
 GET /v1/posts/:id detail a post
-POST /v1/posts/:id update a post
+PUT /v1/posts/:id update a post
 PATCH /v1/posts/:id partial update a post
 DELETE /v1/posts/:id delete a post
 ```
@@ -57,7 +57,7 @@ GET /v2/posts/ list posts
 POST /v2/posts/ create a post
 
 GET /v2/posts/:id detail a post
-POST /v2/posts/:id update a post
+PUT /v2/posts/:id update a post
 PATCH /v2/posts/:id partial update a post
 DELETE /v2/posts/:id delete a post
 ```
