@@ -6,11 +6,12 @@ from django.shortcuts import get_object_or_404
 from .models import Post
 from .serializers import PostSerializer
 
+
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    
