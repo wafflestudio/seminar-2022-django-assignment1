@@ -1,17 +1,59 @@
+# Medium REST API
 
-## problem 2
+- 작성자 : 박용주(2022/9/28)
+- 이 문서는 REST API를 이용한 Medium Post CRUD API를 안내합니다. 
+  
 
-당신은 medium.com의 서버 개발자가 되어, 블로그 포스트를 모델링하고 이를 crud하는 API를 맡게 되었다.
+목차
+- [Medium REST API](#medium-rest-api)
+- [개요](#개요)
+  - [Post 모델 개요](#post-모델-개요)
+  - [HTTP Method 요약](#http-method-요약)
+  - [GET /v1/posts/](#get-v1posts)
+  - [POST /v1/posts/](#post-v1posts)
+  - [GET /v1/posts/:id/](#get-v1postsid)
+  - [PUT /v1/posts/:id/](#put-v1postsid)
+  - [PATCH /v1/posts/:id/](#patch-v1postsid)
+  - [DELETE /v1/posts/:id/](#delete-v1postsid)
+- [더보기](#더보기)
+    - [개발 환경](#개발-환경)
 
-https://github.com/Medium/medium-api-docs#3-resources
-medium-api 이용해서 구현하기
+<br></br>
+
+# 개요
+
+![API 개요](https://user-images.githubusercontent.com/81140673/192932855-69ee05ad-3eb6-4515-8558-d694d29a756d.png)
 
 
-![미디엄 스크린샷](./%EB%AF%B8%EB%94%94%EC%97%84%20%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7.png)
+Medium Blog와 Medium 공식 API를 참고하여 개발한 Medium Post API입니다. 
+ 
+<br></br>
+ 
+ 
+ 
+## Post 모델 개요
 
-[medium post detail page](https://mondaynote.com/apples-next-big-thing-a-business-model-change-e9b0145500c9)를 참고하여, 하단 API를 만든다.
+Post Model은 Medium 공식 API를 참고하여 11개의 필드로 구성하였습니다. 
+
+|Field 이름|Field 타입|Field 기능|
+|-|-|-|
+|title|CharField|Post의 제목|
+|date|DateTimeField|Post가 발생된 날짜, 시간|
+|link|URLField|Post가 발행되는 url|
+|description|TextField|Post의 부제목|
+|tags|JSONField|Post의 내용을 나타내는 태크|
+|author_email|EmailField|Post를 발행한 저자의 이메일|
+|content_format|CharField|Post가 markdown인지 html인지 나타냄|
+|canonical_url|URLField|검색 엔진에 올리기 위한 공식 URL|
+|public_status|CharField|Post를 public, private 중 어떻게 올릴 것인지|
+|notify_followers|BooleanField|Post author를 팔로우하는 유저에게 알림을 울릴 것인지|
 
 
+
+<br></br>
+
+
+## HTTP Method 요약
 ```
 GET /v1/posts/ list posts
 POST /v1/posts/ create a post
@@ -21,24 +63,54 @@ POST /v1/posts/:id update a post
 PATCH /v1/posts/:id partial update a post
 DELETE /v1/posts/:id delete a post
 ```
+<br></br>
 
+## GET /v1/posts/
+``` Bash
+GET /v1/posts/
+```
+현재 존재하는 모든 posts를 리턴합니다. 
 
-### 제약사항
+<br></br>
 
-- 모델링하고, 이를 viewset에 적용하는 일 외 다른 수정사항은 최소화하여 진행한다.
-  - authentication, pagination 등은 하지 않는다.
-- 하나의 모델 내에서만 모델링을 진행한다. 
-  - Foreign Key는 사용하지 않는다.
-- 힌트: [Django model fields](https://docs.djangoproject.com/en/4.1/ref/models/fields/) 문서를 참고하면서 모델링해보세요.
+## POST /v1/posts/
+``` Bash
+POST /v1/posts/
+```
+새로운 Post 객체를 생성합니다. 
 
-### 제출
+<br></br>
 
-problem-2 폴더에 장고 프로젝트를 업로드해주세요.
+## GET /v1/posts/:id/
+``` Bash
+GET /v1/posts/:id/
+```
+하나의 Post를 id로 불러옵니다. 
+<br></br>
 
-[medium-post-api-example](https://github.com/david-fernando/medium-posts-api)
+## PUT /v1/posts/:id/
+``` Bash
+PUT /v1/posts/:id/
+```
+id번째 POST를 완전히 새롭게 바꿉니다. 
+<br></br>
 
-궁금한 것
-rest_framework.generic
-rest_framework.serializer
-rest_framework.queryset
-rest_framework.serializer_class
+## PATCH /v1/posts/:id/
+``` Bash
+PATCH /v1/posts/:id/
+```
+POST를 부분적으로 수정합니다. 
+<br></br>
+
+## DELETE /v1/posts/:id/
+``` Bash
+DELETE /v1/posts/:id/
+```
+Post 객체를 삭제합니다. 
+<br></br>
+
+# 더보기
+### 개발 환경
+- environment : Windows WSL2 Ubuntu
+- python pip list : [requirement.txt](/problem-1/requirements.txt)
+
