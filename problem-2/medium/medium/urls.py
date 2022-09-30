@@ -21,5 +21,5 @@ from rest_framework import routers, serializers, viewsets
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('v1/', include('post.urls')),
+    path('', include('post.urls'))
 ]
