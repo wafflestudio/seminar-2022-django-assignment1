@@ -5,5 +5,5 @@ import blog
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("blog/", include("blog.urls"))
+    path("v1/", include("blog.urls"))
 ]
