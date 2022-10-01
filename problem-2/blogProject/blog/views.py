@@ -35,7 +35,7 @@ def post_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # /v2/posts/<int:pk>
-@api_view(['GET', 'POST', 'PATCH', 'DELETE'])
+@api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
 def post_detail(request, pk):
     # pk값이 일치하는 post 가져오기
     try:
@@ -48,8 +48,8 @@ def post_detail(request, pk):
         serializer = PostSerializer(post)
         return Response(serializer.data)
 
-    # POST 요청시 update a post
-    elif request.method == 'POST':
+    # PUT 요청시 update a post
+    elif request.method == 'PUT':
         serializer = PostSerializer(post, data=request.data)
         if serializer.is_valid():
             serializer.save()
