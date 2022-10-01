@@ -12,6 +12,6 @@ class Post(models.Model):
     title = models.CharField(max_length=100, default='')
     posted_date = models.DateField()
     description = models.TextField()
-    description_image = models.ImageField(blank=True)
+    description_image = models.ImageField(upload_to="images/", blank=True, null=True)
     claps_count = models.IntegerField(default=0)
     response_count = models.IntegerField(default=0)
