@@ -1,0 +1,6 @@
+black==22.8.0
+django==4.1.1
+djangorestframework==3.14.0
+isort==5.10.1
+psycopg2-binary==2.9.3; sys_platform == 'darwin' and platform_machine == 'arm64'
+psycopg2==2.9.3; sys_platform != 'darwin' or platform_machine != 'arm64'
