@@ -17,4 +17,4 @@ class Post(models.Model):
     comments = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.title + 'written by ' + self.user
+        return self.title + ' written by ' + self.user
