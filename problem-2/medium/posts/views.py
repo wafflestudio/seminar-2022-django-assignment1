@@ -1,5 +1,5 @@
 from django import http, shortcuts
-from rest_framework import decorators, request, viewsets
+from rest_framework import decorators, response, status, viewsets
 
 from posts import models, serializers
 
@@ -11,56 +11,40 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 # v2/posts/
-@decorators.api_view(["GET"])
-def get_all_posts(request: request.Request) -> http.HttpResponse:
-    posts = models.Post.objects.all()
-    serializer = serializers.PostSerializer(instance=posts, many=True)
-    return http.JsonResponse(data=serializer.data, status=200)
+@decorators.api_view(["GET", "POST"])
+def post_list(request: http.HttpRequest) -> http.HttpResponse:
+    if request.method == "POST":
+        serializer = serializers.PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response(
+                data=serializer.data, status=status.HTTP_201_CREATED
+            )
+        return response.Response(
+            data=serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )
+        
+    elif request.method == "GET":
+        posts = models.Post.objects.all()
+        serializer = serializers.PostSerializer(instance=posts, many=True)
+    return response.Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
-@decorators.api_view(["POST"])
-def create_post(request: request.Request) -> http.HttpResponse:
-    serializer = serializers.PostSerializer(data=request.data)
+@decorators.api_view(["PUT", "PATCH", "DELETE"])
+def post_detail(request: http.HttpRequest, pk: int) -> http.HttpResponse:
+    if request.method == "DELETE":
+        post = shortcuts.get_object_or_404(models.Post, pk=pk)
+        post.delete()
+        return http.HttpResponse(status=204)
+
+    post = shortcuts.get_object_or_404(models.Post, pk=pk)
+    if request.method == "PUT":
+        serializer = serializers.PostSerializer(instance=post, data=request.data)
+    elif request.method == "PATCH":
+        serializer = serializers.PostSerializer(
+            instance=post, data=request.data, partial=True)
 
     if serializer.is_valid():
         serializer.save()
-        return http.JsonResponse(data=serializer.data, status=200)
-    return http.JsonResponse(data=serializer.errors, status=400)
-
-
-@decorators.api_view(["GET"])
-def get_post_detail(request: request.Request, pk: int) -> http.HttpResponse:
-    post = shortcuts.get_object_or_404(models.Post, pk=pk)
-    serializer = serializers.PostSerializer(instance=post)
-    return http.JsonResponse(data=serializer.data, status=200)
-
-
-@decorators.api_view(["PUT"])
-def update_post(request: request.Request, pk: int) -> http.HttpResponse:
-    post = shortcuts.get_object_or_404(models.Post, pk=pk)
-    serializer = serializers.PostSerializer(instance=post, data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-        return http.JsonResponse(data=serializer.data, status=200)
-    return http.JsonResponse(data=serializer.errors, status=400)
-
-
-@decorators.api_view(["PATCH"])
-def patch_post(request: request.Request, pk: int) -> http.HttpResponse:
-    post = shortcuts.get_object_or_404(models.Post, pk=pk)
-    serializer = serializers.PostSerializer(
-        instance=post, data=request.data, partial=True
-    )
-
-    if serializer.is_valid():
-        serializer.save()
-        return http.JsonResponse(data=serializer.data, status=200)
-    return http.JsonResponse(data=serializer.errors, status=400)
-
-
-@decorators.api_view(["DELETE"])
-def delete_post(request: request.Request, pk: int) -> http.HttpResponse:
-    post = shortcuts.get_object_or_404(models.Post, pk=pk)
-    post.delete()
-    return http.HttpResponse(status=204)
+        return response.Response(data=serializer.data, status=status.HTTP_200_OK)
+    return response.Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
