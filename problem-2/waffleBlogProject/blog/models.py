@@ -15,3 +15,6 @@ class Post(models.Model):
     likes = models.IntegerField(default=0)
     # Comment model 의 ForeignKey 로 연결되어야 하나, 이번 과제에서 테이블 하나만을 사용하므로 코멘트의 개수만을 저장하는 IntegerField 사용
     comments = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title + 'written by ' + self.user
