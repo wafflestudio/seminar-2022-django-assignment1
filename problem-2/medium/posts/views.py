@@ -30,8 +30,13 @@ def post_list(request: http.HttpRequest) -> http.HttpResponse:
     return response.Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
-@decorators.api_view(["PUT", "PATCH", "DELETE"])
+@decorators.api_view(["GET", "PUT", "PATCH", "DELETE"])
 def post_detail(request: http.HttpRequest, pk: int) -> http.HttpResponse:
+    if request.method == "GET":
+        post = shortcuts.get_object_or_404(models.Post, pk=pk)
+        serializer = serializers.PostSerializer(instance=post)
+        return response.Response(data=serializer.data, status=status.HTTP_200_OK)
+        
     if request.method == "DELETE":
         post = shortcuts.get_object_or_404(models.Post, pk=pk)
         post.delete()
