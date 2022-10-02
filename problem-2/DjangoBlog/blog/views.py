@@ -35,7 +35,7 @@ def get_post_list(request):
 
 
 @api_view(('GET', 'PUT', 'PATCH', 'DELETE'))
-def get_post_detail_list(request, pk):
+def get_post_detail(request, pk):
     instance = get_object_or_404(Post, pk=pk)
 
     if request.method == 'GET':
