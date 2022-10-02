@@ -8,6 +8,7 @@ from rest_framework.settings import api_settings
 
 from blog.models import Post
 from blog.serializers import PostSerializer
+from django.shortcuts import get_object_or_404
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -35,14 +36,14 @@ def get_post_list(request):
 
 @api_view(('GET', 'PUT', 'PATCH', 'DELETE'))
 def get_post_detail_list(request, pk):
+    instance = get_object_or_404(Post, pk=pk)
+
     if request.method == 'GET':
-        queryset = Post.objects.get(id=pk)
-        serializer = PostSerializer(queryset, many=False)
+        serializer = PostSerializer(instance, many=False)
         return Response(serializer.data)
 
     if request.method in ['PATCH', 'PUT']:
         partial = (request.method == 'PATCH')
-        instance = Post.objects.get(id=pk)
         serializer = PostSerializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -55,6 +56,5 @@ def get_post_detail_list(request, pk):
         return Response(serializer.data)
 
     if request.method == 'DELETE':
-        instance = Post.objects.get(id=pk)
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
