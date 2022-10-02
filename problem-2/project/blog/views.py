@@ -5,17 +5,18 @@ from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
+from rest_framework import viewsets
 
 from .models import Post
 from .serializers import PostSerializer
 
-
-# @api_view(['GET'])
-# def api_root(request, format=None):
-#     return Response({
-#         'posts': reverse('post_list', request=request, format=format)
-#     })
+# """
+# class-based viewsets
+# """
+# class PostViewSet(viewsets.ModelViewSet):
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+#
 
 
 @api_view(['GET', 'POST'])
