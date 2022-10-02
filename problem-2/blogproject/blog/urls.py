@@ -8,5 +8,5 @@ router.register(r'posts', views.PostViewSet, basename="post")
 
 # The API URLs are now determined automatically by the router.
 urlpatterns = [
-    path('', include(router.urls)),
+    path('v1/', include(router.urls)),
 ]
